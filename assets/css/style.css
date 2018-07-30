@@ -68,8 +68,22 @@ h1, h2, h3, h4, h5, p, #bannertext{
 
 }
 
+#comparebanner {
+    margin-top: 9px;
+    border-bottom: black solid 4px;
+}
+
 #carousel{
     background-color: gray;
     height: 250px;
     margin-top: 25px;
+}
+
+#carbanner {
+    height: 50px;
+    border-bottom: black solid 4px;
+}
+
+#carbannertext{
+    margin-top: 9px;
 }
