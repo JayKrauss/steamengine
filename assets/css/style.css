@@ -1,0 +1,53 @@
+
+body {
+    background-image:url('../../assets/images/background.png');
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+
+}
+
+#banner {
+    height: 100px;
+    background-color: gray;
+    margin-bottom: 10px;
+    border-bottom: black solid 5px;
+}
+
+#main {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+#rightcurrent {
+    background-color: gray;
+    height: 250px;
+    border: black solid 4px;
+    box-sizing: border-box;
+}
+
+#leftcurrent {
+    background-color: gray;
+    height: 250px;
+    border: black solid 4px;
+    box-sizing: border-box;
+}
+
+#infocurrent {
+    background-color: darkgray;
+    height: 500px;
+    border: black solid 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+#carousel{
+    background-color: gray;
+    height: 250px;
+    border: black solid 4px;
+    margin-top: 25px;
+}
