@@ -7,6 +7,10 @@ body {
 
 }
 
+#banner, #rightcurrent, #leftcurrent, #infocurrent, #carousel {
+    background-image:url('../../assets/images/backgroundlight.png');
+}
+
 #banner {
     height: 100px;
     background-color: gray;
