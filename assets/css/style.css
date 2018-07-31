@@ -15,8 +15,13 @@ h1, h2, h3, h4, h5, p, #bannertext{
     font-size: 56px;
 }
 
-#banner, #rightcurrent, #leftcurrent, #infocurrent1, #infocurrent2, #compare, #carousel {
+#banner, #rightcurrent, #leftcurrent, #infocurrent1, #infocurrent2, #carousel {
     background-image: url('../../assets/images/backgroundlight.png');
+}
+
+#compare {
+    background: url('../../assets/images/piston.png') center no-repeat, url('../../assets/images/backgroundlight.png') repeat;
+    background-size: 400px, 175px;
 }
 
 #banner {
@@ -49,12 +54,18 @@ h1, h2, h3, h4, h5, p, #bannertext{
     background-color: gray;
     height: 250px;
     box-sizing: border-box;
+    border-top: black solid 4px;
+    border-bottom: black solid 4px;
+    border-right: black solid 4px;
 }
 
 #leftcurrent {
     background-color: gray;
     height: 250px;
     box-sizing: border-box;
+    border-top: black solid 4px;
+    border-bottom: black solid 4px;
+    border-left: black solid 4px;
 }
 
 #p1, #p2{
