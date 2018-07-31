@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, p, #bannertext{
     left: 70%;
 }
 
-#banner, #rightcurrent, #leftcurrent, #infocurrent1, #infocurrent2, #carousel {
+#banner, #rightcurrent, #leftcurrent, #infocurrent1, #infocurrent2, #carousel, #comparebanner {
     background-image: url('../../assets/images/backgroundlight.png');
 }
 
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, p, #bannertext{
 }
 
 #welcome {
-    height:25px;
+    height:auto;
     width: 100%;
     background-image: url('../../assets/images/backgroundlight.png');
 }
