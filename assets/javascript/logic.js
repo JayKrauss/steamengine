@@ -46,13 +46,20 @@ $('#infocurrent1').html(`<img src="https://steamcdn-a.opskins.media/steam/apps/$
 
   //doc.ready to allow for DOM input
 $(document).ready(function(){
+  
   //Left submit button functionality
   $('#p1Btn').on('click', function(){
     event.preventDefault();
     steamID = $('#steamID1').val().trim();
-
     console.log(steamID);   
-    
+    playerAjax();
+  });
+
+  //Right submit button functionality
+  $('#p2Btn').on('click', function(){
+    event.preventDefault();
+    steamID = $('#steamID2').val().trim();
+    console.log(steamID);   
     playerAjax();
   });
 
