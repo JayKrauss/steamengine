@@ -26,20 +26,18 @@ function playerAjax() {
       let games = response.response.games
       gamesArray = games.map(x => x.appid)
       console.log(gamesArray)
-      // parseGames(games);
+      nameGames(gamesArray);
 
 
     });
 }
 
-// function parseGames(games) {
-//   console.log(games)
-//   for (i = 0; i < games.length; i++) {
-//       gamesArray.push(games[i].appid)
-
-//     }
-//   console.log(gamesArray);
-// };
+function nameGames(gamesArray){
+  for (i=0; i<gamesArray.length; i++){
+    let namedGame = gameCall(gamesArray[i]);
+    console.log(namedGame);
+  }
+}
 
 //Calls to API to pull the game name from the APPID provided by the JSON object
 function gameCall() {
@@ -51,9 +49,9 @@ function gameCall() {
     method: "GET"
   })
     .then(function (response) {
-      console.log(response.game.gameName);
+      console.log(reponse.response.game.gameName);
       console.log(response);
-      return (response.game.gameName)
+      return (response.response.game.gameName)
     });
 
 }
