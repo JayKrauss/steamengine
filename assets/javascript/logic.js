@@ -25,11 +25,7 @@ function playerOneAjax() {
       console.log(response);
       console.log(response.response.games)
       let games = response.response.games
-      gamesArray1 = [
-        {appid : games.map(x => x.appid)},
-        {name : games.map(x => x.name)},
-      ]
-
+      gamesArray1 = games.map(x => x)
       console.log(gamesArray1)
     });
 }
@@ -37,7 +33,7 @@ function playerOneAjax() {
 //Second player call to API for game list
 function playerTwoAjax() {
 
-  var queryURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&steamid=${steamID}&format=json`;
+  var queryURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&include_appinfo=1&steamid=${steamID}&format=json`;
 
   $.ajax({
     url: queryURL,
@@ -48,10 +44,7 @@ function playerTwoAjax() {
       console.log(response);
       console.log(response.response.games)
       let games = response.response.games
-      gamesArray2 = [
-        {appid : games.map(x => x.appid)},
-        {name : games.map(x => x.name)},
-      ]
+      gamesArray2 = games.map(x => x)
       console.log(gamesArray2)
       console.log("-------------------------------")
       appCompare(gamesArray1, gamesArray2)
@@ -61,20 +54,17 @@ function playerTwoAjax() {
 
 //Compares two account's gameid arrays and prints results
 function appCompare(gamesArray1, gamesArray2){
-const set = new Set(gamesArray1.map(x => x))
-const overlap = gamesArray2.filter(x => set.has(x))
+var overlap = [];
+  //  for (i=0; i<gamesArray1.length; i++){
+  //    if (gamesArray1.appid === gamesArray2.appid){
+  //       overlap.push(gamesArray1[i])
+  //    }
+  //  }
+ 
 console.log(overlap)
-nameGames(overlap);
 }
 
-//Iterates over the overlap list and pulls the names from the API
-function nameGames(overlap){
-  for (i=0; i<overlap.length; i++){
-    let namedGame = gameCall(overlap[i]);
-    console.log(namedGame);
-  }
-}
-
+//.map(x => x)
 //Calls to API to pull the game name from the APPID provided by the JSON object
 // function gameCall(overlap) {
 
