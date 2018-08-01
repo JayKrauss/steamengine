@@ -8,10 +8,34 @@ var appID;
 var player;
 
 //Array to hold games from API
-var gamesArray = [];
-// var games;
+var gamesArray1 = [];
+var gamesArray2 = [];
+
 //First player call to API for game list
-function playerAjax() {
+function playerOneAjax() {
+
+  var queryURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&include_appinfo=1&steamid=${steamID}&format=json`;
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+    .then(function (response) {
+      console.log(queryURL);
+      console.log(response);
+      console.log(response.response.games)
+      let games = response.response.games
+      gamesArray1 = [
+        {appid : games.map(x => x.appid)},
+        {name : games.map(x => x.name)},
+      ]
+
+      console.log(gamesArray1)
+    });
+}
+
+//Second player call to API for game list
+function playerTwoAjax() {
 
   var queryURL = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&steamid=${steamID}&format=json`;
 
@@ -24,40 +48,51 @@ function playerAjax() {
       console.log(response);
       console.log(response.response.games)
       let games = response.response.games
-      gamesArray = games.map(x => x.appid)
-      console.log(gamesArray)
-      nameGames(gamesArray);
-
+      gamesArray2 = [
+        {appid : games.map(x => x.appid)},
+        {name : games.map(x => x.name)},
+      ]
+      console.log(gamesArray2)
+      console.log("-------------------------------")
+      appCompare(gamesArray1, gamesArray2)
 
     });
 }
 
-function nameGames(gamesArray){
-  for (i=0; i<gamesArray.length; i++){
-    let namedGame = gameCall(gamesArray[i]);
+//Compares two account's gameid arrays and prints results
+function appCompare(gamesArray1, gamesArray2){
+const set = new Set(gamesArray1.map(x => x))
+const overlap = gamesArray2.filter(x => set.has(x))
+console.log(overlap)
+nameGames(overlap);
+}
+
+//Iterates over the overlap list and pulls the names from the API
+function nameGames(overlap){
+  for (i=0; i<overlap.length; i++){
+    let namedGame = gameCall(overlap[i]);
     console.log(namedGame);
   }
 }
 
 //Calls to API to pull the game name from the APPID provided by the JSON object
-function gameCall() {
+// function gameCall(overlap) {
 
-  var queryURLGame = `http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&appid=${appID}&format=json`;
+//   var queryURLGame = `http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=5EB85FE3C64B2FECF3B4CBE03147F65E&appid=${overlap}&format=json`;
 
-  $.ajax({
-    url: queryURLGame,
-    method: "GET"
-  })
-    .then(function (response) {
-      console.log(reponse.response.game.gameName);
-      console.log(response);
-      return (response.response.game.gameName)
-    });
+//   $.ajax({
+//     url: queryURLGame,
+//     method: "GET"
+//   })
+//     .then(function (response) {
+//       console.log(response);
+//       console.log(response.response.game.gameName)
+//     });
 
-}
+// }
 
 //Will collect appID and generate a game logo image link to be appended into the appropriate div
-function iconCall() {
+function iconCall(appID) {
 
   $('#infocurrent1').html(`<img src="https://steamcdn-a.opskins.media/steam/apps/${appID}/header.jpg?t=1">`)
 
@@ -72,7 +107,7 @@ $(document).ready(function () {
     player = 1;
     steamID = $('#steamID1').val().trim();
     console.log(steamID);
-    playerAjax();
+    playerOneAjax();
   });
 
   //Right submit button functionality
@@ -81,9 +116,25 @@ $(document).ready(function () {
     player = 2;
     steamID = $('#steamID2').val().trim();
     console.log(steamID);
-    playerAjax();
+    playerTwoAjax();
   });
 
 });
+
+// const arr1 = [
+//   { appid: 10 },
+//   { appid: 20 }
+// ]
+
+// const arr2 = [
+//   { appid: 10 },
+//   { appid: 100 },
+//   { appid: 90 }
+// ]
+
+// const set = new Set(arr1.map(x => x.appid))
+// const overlap = arr2.filter(x => set.has(x.appid))
+// console.log(overlap)
+
 
 
